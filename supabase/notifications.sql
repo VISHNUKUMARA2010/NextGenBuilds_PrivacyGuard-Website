@@ -24,6 +24,11 @@ create policy "Users can mark their own notifications read"
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
 
+drop policy if exists "Users can delete their own notifications" on public.notifications;
+create policy "Users can delete their own notifications"
+  on public.notifications for delete to authenticated
+  using (auth.uid() = user_id);
+
 create index if not exists notifications_user_created_idx
   on public.notifications(user_id, created_at desc);
 

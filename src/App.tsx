@@ -149,7 +149,11 @@ function useNotifications() {
   const clearAll = async () => {
     setNotifications([]);
     if (!supabase || !user) return;
-    await supabase.from("notifications").update({ read_at: new Date().toISOString() }).eq("user_id", user.id).is("read_at", null);
+    const result = await supabase.from("notifications").delete().eq("user_id", user.id);
+    if (result.error) {
+      setError(result.error.message);
+      void load();
+    }
   };
   return { notifications, loading, error, load, markRead, markAllRead, clearAll };
 }
@@ -900,7 +904,7 @@ function Account() {
           </Link>
         </div>
         <section className="activity-section" id="activity">
-          <div className="section-heading"><div><div className="eyebrow">Security timeline</div><h2>Recent activity</h2></div><button className="button button-ghost" onClick={() => void notificationState.load()}>Refresh</button></div>
+          <div className="section-heading"><div><div className="eyebrow">Security timeline</div><h2>Recent activity</h2></div><div className="activity-actions"><button className="button button-ghost" onClick={() => void notificationState.load()}>Refresh</button>{notificationState.notifications.length > 0 && <button className="button button-ghost" onClick={() => void notificationState.clearAll()}>Clear all</button>}</div></div>
           {notificationState.loading ? <div className="glass-card empty-state">Loading recent activity...</div> : notificationState.error ? <div className="glass-card empty-state"><p>Activity is unavailable right now.</p><button className="button button-outline" onClick={() => void notificationState.load()}>Retry</button></div> : notificationState.notifications.length === 0 ? <div className="glass-card empty-state">No account or licence activity yet.</div> : <div className="activity-list">{notificationState.notifications.slice(0, 6).map((item) => <div className="glass-card activity-row" key={item.id}><span className="notification-icon"><Bell size={14} /></span><div><strong>{item.title}</strong><p>{item.message}</p></div><time>{new Date(item.created_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</time></div>)}</div>}
         </section>
       </div>
