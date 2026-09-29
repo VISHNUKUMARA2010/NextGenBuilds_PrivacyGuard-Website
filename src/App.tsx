@@ -914,7 +914,6 @@ function LicensePage() {
   const [licenseHistory, setLicenseHistory] = useState<License[]>([]);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
   useEffect(() => {
     if (!supabase || !user) {
       setLoading(false);
@@ -951,9 +950,9 @@ function LicensePage() {
               Manage your PrivacyGuard licence and keep your devices covered.
             </p>
           </div>
-          <button className="button button-blue" onClick={() => setContactOpen(true)}>
+          <a className="button button-blue" href="https://t.me/+ahmMTKOYJsllNDZl" target="_blank" rel="noreferrer">
             <KeyRound size={16} /> Redeem licence
-          </button>
+          </a>
         </div>
         {loading ? (
           <div className="glass-card empty-state">Loading your licence...</div>
@@ -1019,35 +1018,9 @@ function LicensePage() {
             </div>
             <h2>No active licence yet.</h2>
             <p>Redeem a licence key to start protecting your devices.</p>
-            <button className="button button-blue" onClick={() => setContactOpen(true)}>
+            <a className="button button-blue" href="https://t.me/+ahmMTKOYJsllNDZl" target="_blank" rel="noreferrer">
               Redeem licence <ArrowRight size={15} />
-            </button>
-          </div>
-        )}
-        {contactOpen && (
-          <div className="contact-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-title">
-            <div className="contact-modal glass-card">
-              <button
-                className="modal-close"
-                type="button"
-                aria-label="Close contact options"
-                onClick={() => setContactOpen(false)}
-              >
-                <X size={18} />
-              </button>
-              <div className="success-icon"><KeyRound size={22} /></div>
-              <div className="eyebrow">Get your licence</div>
-              <h2 id="contact-title">Contact us to redeem</h2>
-              <p>Choose Telegram or Discord and message us to get your PrivacyGuard licence.</p>
-              <div className="contact-actions">
-                <a className="button button-blue" href="https://t.me/+ahmMTKOYJsllNDZl" target="_blank" rel="noreferrer">
-                  Contact on Telegram <ArrowRight size={15} />
-                </a>
-                <a className="button button-outline" href="https://discord.gg/9CAgggFt" target="_blank" rel="noreferrer">
-                  Contact on Discord <ArrowRight size={15} />
-                </a>
-              </div>
-            </div>
+            </a>
           </div>
         )}
         <div className="history">
