@@ -1039,7 +1039,7 @@ function LicensePage() {
               <h2 id="contact-title">Contact us to redeem</h2>
               <p>Choose how you would like to contact us for your PrivacyGuard licence.</p>
               <div className="contact-actions">
-                <a className="button button-blue" href="https://t.me/+ahmMTKOYJsllNDZl" target="_blank" rel="noreferrer">
+                <a className="button button-blue" href="https://t.me/NextGenBuilds_PrivacyGuard" target="_blank" rel="noreferrer">
                   Telegram <ArrowRight size={15} />
                 </a>
                 <a className="button button-outline" href="https://discord.gg/9CAgggFt" target="_blank" rel="noreferrer">
