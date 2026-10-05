@@ -343,7 +343,7 @@ function Home() {
             <div className="hero-actions">
               <a
                 className="button button-blue button-large"
-                href="/PrivacyGuard_Setup_v2.1.exe"
+                href="/NextGenBuilds_PrivacyGuard%20Setup.exe"
                 download
               >
                 Download PrivacyGuard <ArrowDownToLine size={17} />
