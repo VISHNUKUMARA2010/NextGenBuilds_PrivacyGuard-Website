@@ -8,6 +8,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import {
+  ArrowDownToLine,
   ArrowRight,
   Bell,
   BellRing,
@@ -340,6 +341,13 @@ function Home() {
               Own your data, keep your focus, and stay one step ahead.
             </p>
             <div className="hero-actions">
+              <a
+                className="button button-blue button-large"
+                href="/PrivacyGuard_Setup_v2.1.exe"
+                download
+              >
+                Download PrivacyGuard <ArrowDownToLine size={17} />
+              </a>
               <Link className="button button-blue button-large" to="/register">
                 Get started <ArrowRight size={17} />
               </Link>
